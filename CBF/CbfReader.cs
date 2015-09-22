@@ -219,8 +219,8 @@ namespace CBF
             
             object ret = ReadObject();
 
-            Type t = ret.GetType().GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IList<>)).First();
-
+            //Type t = ret.GetType().GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IList<>)).First();
+            Type t = ret.GetType();
             DynamicMethodDelegate dmd = DynamicMethodDelegateFactory.CreateDelegate(t.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public, null, t.GetGenericArguments(), null));
 
             TypeMarker elemt = (TypeMarker)reader.ReadByte();
